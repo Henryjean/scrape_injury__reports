@@ -4,7 +4,7 @@ name: IRscrape
 # Controls when the action will run.
 on:
   schedule:
-    - cron:  '0 17 * * *'
+    - cron:  '0 11 * * *'
 
 jobs: 
   autoscrape:
