@@ -6,29 +6,29 @@ on:
   push:
     branches: main
 
-
 jobs: 
   autoscrape:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
-    # Load repo and install R
+   # Load repo and install R
     steps:
     - uses: actions/checkout@master
+    
+   # Install R
     - uses: r-lib/actions/setup-r@master
+      with:
+        r-version: '3.6.3'
 
-    # Set-up R
-    - name: Install packages
-      run: |
-        R -e 'install.packages("dplyr")'
-        R -e 'install.packages("tabulizer")'
-        R -e 'install.packages("lubridate")'
-        R -e 'install.packages("tidyr")'
-    # Run R script
+   # Set-up R
+    - name: Install pacakges
+      run: R -e 'source("install_packages.R", echo = TRUE)'
+      
+   # Run R script
     - name: Scrape
       run: Rscript IR_scrape.R
       
- # Add new files in data folder, commit along with other modified files, push
+   # Add new files in data folder, commit along with other modified files, push
     - name: Commit files
       run: |
         git config --local user.name actions-user
