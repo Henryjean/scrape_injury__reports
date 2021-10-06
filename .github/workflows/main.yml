@@ -22,7 +22,7 @@ jobs:
 
    # Set-up R
     - name: Install pacakges
-      run: R -e 'source("install_packages.R", echo = TRUE)'
+      run: Rscript install_packages.R
       
    # Run R script
     - name: Scrape
