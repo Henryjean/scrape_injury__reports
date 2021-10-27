@@ -80,12 +80,13 @@ get_injuries <- function(date) {
           teamName == Matchup & Game.Time != "" ~ Game.Time,
           teamName == Game.Time & grepl("@", Game.Date) ~ Game.Date,
           teamName == "" & playerStatus == "" ~ "",
-          TRUE ~ ""), 
+          TRUE ~ ""),  
         gameTime = case_when(
+          playerName == "" & playerReason == "" ~ "",
           gameMatchup == Matchup ~ Game.Time, 
           gameMatchup == Game.Time ~ Game.Date,
           TRUE ~ ""
-        )) %>% 
+        )) %>%  
       filter(playerStatus != "NOT YET SUBMITTED" & playerReason != "NOT YET SUBMITTED") %>%
       select(reportDate, gameDate, gameTime, gameMatchup, teamName, playerName, playerStatus, playerReason) %>%
       mutate(across(everything(), ~ifelse(.=="", NA, as.character(.)))) %>%
@@ -102,3 +103,5 @@ dat <- get_injuries(as.character(Sys.Date() - 1))
 
 # Save data
 write.csv(dat, paste0("data/", as.character(Sys.Date() - 1), ".csv"), row.names = FALSE)
+
+
