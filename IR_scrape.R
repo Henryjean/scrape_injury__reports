@@ -104,4 +104,3 @@ dat <- get_injuries(as.character(Sys.Date() - 1))
 # Save data
 write.csv(dat, paste0("data/", as.character(Sys.Date() - 1), ".csv"), row.names = FALSE)
 
-
