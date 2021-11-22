@@ -93,13 +93,12 @@ get_injuries <- function(date) {
       fill(gameDate, gameTime, gameMatchup, teamName) 
 
   }
+  
+  # Save data
+  write.csv(df, paste0("data/", as.character(date), ".csv"), row.names = FALSE)
 
-  return(df)
 
 }
 
 # Get data
-dat <- get_injuries(as.character(Sys.Date() - 1))
-
-# Save data
-write.csv(dat, paste0("data/", as.character(Sys.Date() - 1), ".csv"), row.names = FALSE)
+get_injuries(as.character(Sys.Date() - 1))
