@@ -8,4 +8,6 @@ install.packages("dplyr")
 install.packages("lubridate")
 install.packages("tidyr")
 install.packages("remotes")
-remotes::install_github(c("remotes/tabulizerjars", "remotes/tabulizer"), INSTALL_opts = "--no-multiarch", dependencies = c("Depends", "Imports"))
+
+install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"), INSTALL_opts = "--no-multiarch")
+
